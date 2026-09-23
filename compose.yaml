@@ -1,0 +1,16 @@
+services:
+  lab:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - lab-data:/app/data
+    environment:
+      WLAB_TARGETS: ${WLAB_TARGETS:-}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+volumes:
+  lab-data:
