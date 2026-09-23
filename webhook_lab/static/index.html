@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Webhook Lab — Follow the event.</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23b3f36a'/%3E%3Cpath d='M8 10v12h16V10M8 16h16' fill='none' stroke='%23121912' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/static/style.css"><script defer src="/static/app.js"></script>
+</head>
+<body>
+  <div id="login" class="login-shell">
+    <form id="login-form" class="login-card">
+      <div class="brand"><span class="brand-icon">↳</span> webhook<span class="muted">lab</span><span class="version">0.1</span></div>
+      <p class="eyebrow">YOUR LOCAL EVENT WORKBENCH</p><h1>Follow the event.<br>Understand the failure.</h1>
+      <p class="muted">Capture a webhook, inspect its payload, and trace every replay. Your data stays in your workspace.</p>
+      <label for="token">Workspace token</label><input id="token" type="password" autocomplete="off" required placeholder="Paste your admin token">
+      <p class="hint">Find it in <code>data/admin.token</code> or your <code>WLAB_ADMIN_TOKEN</code> environment variable.</p>
+      <button class="primary" type="submit">Open workbench <span>↗</span></button><p id="login-error" role="alert"></p>
+    </form>
+  </div>
+  <div id="workspace" hidden>
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-icon">↳</span> webhook<span class="muted">lab</span></div>
+      <p class="sidebar-label">WORKSPACE</p><div class="nav-active"><span>▤</span> Event inbox <span id="nav-count" class="pill">0</span></div>
+      <a class="nav-link" href="/docs" target="_blank" rel="noopener"><span>⌘</span> API reference <span>↗</span></a>
+      <div class="sidebar-note"><span class="online-dot"></span> Local workspace<p>Single user. Private by default.<br>Built for curious developers.</p></div>
+      <button id="signout" class="quiet">Lock workspace ↗</button>
+    </aside>
+    <main>
+      <header class="topbar"><span>Workspace <span class="slash">/</span> <strong>Event inbox</strong></span><span class="local-tag"><span class="online-dot"></span> LOCAL MODE</span></header>
+      <section class="content">
+        <div class="page-heading"><div><p class="eyebrow">CAPTURE. INSPECT. REPLAY.</p><h1>Every event tells a story.</h1><p class="muted">See what arrived. Find what failed. Try it again.</p></div><button id="sample" class="primary">＋ Send sample event</button></div>
+        <div class="endpoint-card"><div><span class="method">POST</span><code id="endpoint"></code></div><button id="copy" class="small-btn">Copy URL ↗</button></div>
+        <p class="endpoint-hint">Send a POST to this private inbox URL. Keep it secret. External services need a separately configured tunnel.</p>
+        <div class="metrics"><div><span>Captured events</span><strong id="stat-events">0</strong><small>Persisted in this workspace</small></div><div><span>Replay attempts</span><strong id="stat-attempts">0</strong><small>Every attempt leaves a trace</small></div><div><span>Delivered</span><strong id="stat-delivered" class="lime">0</strong><small>Destination returned 2xx</small></div><div><span>Failed</span><strong id="stat-failed">0</strong><small>Non-2xx or connection error</small></div></div>
+        <div class="workbench">
+          <section class="inbox-pane" aria-label="Captured events">
+            <div class="pane-heading"><h2>Incoming events <span id="list-count" class="muted">0</span></h2><button id="refresh" class="small-btn">↻ Refresh</button></div>
+            <label for="search" class="sr-only">Filter loaded events</label><input id="search" class="search" placeholder="Search loaded events by ID or type…">
+            <div class="list-label"><span>EVENT / RECEIVED</span><span>LAST REPLAY</span></div>
+            <div id="event-list"></div>
+            <div class="pagination"><button id="prev" class="small-btn">← Previous</button><span id="page-info"></span><button id="next" class="small-btn">Next →</button></div>
+          </section>
+          <section class="detail-pane" aria-label="Event inspector">
+            <div id="empty-detail" class="empty"><span class="empty-icon">⌁</span><h2>A closer look starts here.</h2><p>Send a sample or select an event<br>to inspect its payload and replay history.</p></div>
+            <div id="event-detail" hidden>
+              <div class="pane-heading"><h2>Event inspector</h2><span class="badge captured">CAPTURED</span></div>
+              <div class="event-meta"><code id="detail-id"></code><p id="detail-meta" class="muted"></p></div>
+              <div class="tabs" role="tablist" aria-label="Event details"><button id="tab-payload" role="tab" aria-controls="panel-payload" aria-selected="true" data-tab="payload" class="active">Payload</button><button id="tab-headers" role="tab" aria-controls="panel-headers" aria-selected="false" data-tab="headers">Headers</button><button id="tab-attempts" role="tab" aria-controls="panel-attempts" aria-selected="false" data-tab="attempts">Replay history <span id="attempt-count">0</span></button></div>
+              <div id="panel-payload" role="tabpanel" aria-labelledby="tab-payload"><div class="code-toolbar"><span id="content-type"></span><button id="download" class="quiet">↓ Raw body</button></div><pre id="payload"></pre></div>
+              <div id="panel-headers" role="tabpanel" aria-labelledby="tab-headers" hidden><p class="hint inset">Only diagnostic headers are kept. Other values are redacted before storage.</p><pre id="headers"></pre></div>
+              <div id="panel-attempts" role="tabpanel" aria-labelledby="tab-attempts" hidden><div id="attempts"></div></div>
+              <div class="replay-box"><div><h3>Replay this event</h3><p>Same bytes. A new attempt. A complete trace.</p></div><label class="sr-only" for="target">Replay destination</label><div class="replay-controls"><select id="target"></select><button id="replay" class="primary">↻ Replay</button></div><p class="hint">Demo targets run in-process and simulate HTTP 200 or 503. Real targets are configured on the server.</p></div>
+            </div>
+          </section>
+        </div>
+        <footer><span>WEBHOOK LAB <span class="muted">/</span> v0.1.0</span><span>Built to make the invisible observable.</span></footer>
+      </section>
+    </main>
+  </div>
+  <div id="toast" role="status" hidden></div>
+</body>
+</html>
