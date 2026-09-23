@@ -1,12 +1,14 @@
 # Webhook Lab
 
+[![Checks](https://github.com/DimaGutierrez/webhook-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/DimaGutierrez/webhook-lab/actions/workflows/ci.yml)
+
 **Follow the event. Understand the failure.**
 
 A local webhook workbench built with Python and FastAPI. Capture an event, inspect its payload, and follow every replay attempt from failure to recovery.
 
 **Status:** working v0.1 local prototype. Single user, one inbox, manual replay. No hosted service or background retry queue yet.
 
-[Español](README.es.md) · [Architecture](docs/architecture.md) · [Roadmap](docs/roadmap.md) · [Security](SECURITY.md)
+[Español](README.es.md) · [Wiki](https://github.com/DimaGutierrez/webhook-lab/wiki) · [Discussions](https://github.com/DimaGutierrez/webhook-lab/discussions) · [Architecture](docs/architecture.md) · [Roadmap](docs/roadmap.md) · [Security](SECURITY.md)
 
 ## Try the story in 60 seconds
 
@@ -113,7 +115,7 @@ python -m ruff check .
 python -m ruff format --check .
 ```
 
-Tests cover byte preservation, redaction, admin access, size and capacity limits, concurrent capture, persisted history, timeouts, connection failures, redirect blocking, and stable replay keys. CI is configured for Windows and Linux; a local test pass is not a claim that remote CI has run.
+Tests cover byte preservation, redaction, admin access, size and capacity limits, concurrent capture, persisted history, timeouts, connection failures, redirect blocking, and stable replay keys. The [Checks workflow](https://github.com/DimaGutierrez/webhook-lab/actions/workflows/ci.yml) runs on Windows and Linux; the badge above shows its current status.
 
 ## Configuration
 
@@ -138,6 +140,14 @@ Targets cannot contain URL credentials, query strings, or fragments. Redirects a
 - No automatic retention, accounts, billing, telemetry, public tunnel, or public hosting is included.
 
 ## Contributing
+
+Start with the [Wiki](https://github.com/DimaGutierrez/webhook-lab/wiki) for installation, replay examples, API configuration and troubleshooting. Then help shape the project:
+
+- [Try the 503 → 200 challenge](https://github.com/DimaGutierrez/webhook-lab/discussions/1) and share the first confusing step.
+- [Discuss duplicate webhooks](https://github.com/DimaGutierrez/webhook-lab/discussions/2): how does your receiver handle retries?
+- [Choose the next feature](https://github.com/DimaGutierrez/webhook-lab/discussions/3) with a concrete debugging problem it would solve.
+
+English and Spanish comments are welcome. If this tool helps you, a star makes it easy to find again and sharing a reproducible use case helps others try it.
 
 Try the failure-to-recovery flow with a synthetic event and report where the experience becomes confusing. Small reproducible bugs are especially useful. See [CONTRIBUTING.md](CONTRIBUTING.md).
 

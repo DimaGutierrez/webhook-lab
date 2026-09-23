@@ -1,10 +1,22 @@
 # Webhook Lab
 
+[![Checks](https://github.com/DimaGutierrez/webhook-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/DimaGutierrez/webhook-lab/actions/workflows/ci.yml)
+
+[English](README.md) · [Wiki y guías](https://github.com/DimaGutierrez/webhook-lab/wiki) · [Discussions](https://github.com/DimaGutierrez/webhook-lab/discussions)
+
 **Seguí el evento. Entendé el fallo.**
 
 Un laboratorio local de webhooks construido con Python y FastAPI. Recibí un evento, inspeccioná su contenido y conservá el historial de cada reproducción.
 
 Estado: prototipo funcional v0.1 para un usuario. Una bandeja de entrada, persistencia SQLite y reproducción manual. Sin servicio público ni cola de reintentos automáticos.
+
+## Participá en el proyecto
+
+- [Probá el desafío 503 → 200](https://github.com/DimaGutierrez/webhook-lab/discussions/1) y contá qué paso te resultó confuso.
+- [Compartí cómo evitás webhooks duplicados](https://github.com/DimaGutierrez/webhook-lab/discussions/2).
+- [Elegí la próxima función](https://github.com/DimaGutierrez/webhook-lab/discussions/3) y explicá qué problema te resolvería.
+
+Podés comentar en español o inglés. Si te sirve, guardalo con una estrella y compartí un caso de uso reproducible.
 
 ## Primera prueba
 
