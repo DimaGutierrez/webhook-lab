@@ -9,13 +9,13 @@ This is a plan, not a list of shipped features.
 - In-process failure/success demo and an external example receiver.
 - Automated API tests and an English/Spanish README.
 
-## Before the first public repository launch
+## Launch follow-up
 
 - Verify Docker Compose on a machine with Docker installed.
-- Run the configured GitHub Actions checks after publication.
+- Windows and Linux GitHub Actions checks passed after publication; see [current checks](https://github.com/DimaGutierrez/webhook-lab/actions/workflows/ci.yml).
 - Record a real 45-second demo with synthetic data.
 - Test installation with at least two external developers.
-- Review repository name availability; project name is provisional.
+- Collect feedback through the [Wiki](https://github.com/DimaGutierrez/webhook-lab/wiki) and [Discussions](https://github.com/DimaGutierrez/webhook-lab/discussions/3).
 
 ## v0.2 · explain the failure
 
