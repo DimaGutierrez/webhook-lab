@@ -1,5 +1,7 @@
 # Webhook Lab
 
+![Webhook Lab — recibí, inspeccioná y reproducí eventos](assets/readme-cover.png)
+
 [![Checks](https://github.com/DimaGutierrez/webhook-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/DimaGutierrez/webhook-lab/actions/workflows/ci.yml)
 
 [English](README.md) · [Wiki y guías](https://github.com/DimaGutierrez/webhook-lab/wiki) · [Discussions](https://github.com/DimaGutierrez/webhook-lab/discussions)

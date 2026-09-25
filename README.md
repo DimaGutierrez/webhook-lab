@@ -1,5 +1,7 @@
 # Webhook Lab
 
+![Webhook Lab — capture, inspect and replay events](assets/readme-cover.png)
+
 [![Checks](https://github.com/DimaGutierrez/webhook-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/DimaGutierrez/webhook-lab/actions/workflows/ci.yml)
 
 **Follow the event. Understand the failure.**
