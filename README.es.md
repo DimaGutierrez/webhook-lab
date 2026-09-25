@@ -2,6 +2,14 @@
 
 ![Webhook Lab — recibí, inspeccioná y reproducí eventos](assets/readme-cover.png)
 
+## Probalo online
+
+**[Abrir la demo interactiva →](https://diegogutierrez.pages.dev/webhook-lab/)** — sin instalar nada ni crear una cuenta.
+
+Explorá eventos ficticios y simulá la recuperación 503 → 200, timeouts, inspección de payloads e historial de intentos. La demo está alojada en Cloudflare Pages y funciona en tu navegador: no recibe webhooks externos ni se conecta a la computadora del autor. Al recargar, vuelve a los ejemplos iniciales. [Alcance y despliegue](docs/public-demo.md).
+
+El backend Python/FastAPI que se explica debajo es la aplicación local completa. Las direcciones `127.0.0.1` identifican tu propia computadora si decidís instalarla; no son el enlace de la demo pública.
+
 [![Checks](https://github.com/DimaGutierrez/webhook-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/DimaGutierrez/webhook-lab/actions/workflows/ci.yml)
 
 [English](README.md) · [Wiki y guías](https://github.com/DimaGutierrez/webhook-lab/wiki) · [Discussions](https://github.com/DimaGutierrez/webhook-lab/discussions)
@@ -20,7 +28,7 @@ Estado: prototipo funcional v0.1 para un usuario. Una bandeja de entrada, persis
 
 Podés comentar en español o inglés. Si te sirve, guardalo con una estrella y compartí un caso de uso reproducible.
 
-## Primera prueba
+## Ejecutar el backend completo localmente
 
 Necesitás Python 3.12 o superior. Desde la raíz del proyecto:
 

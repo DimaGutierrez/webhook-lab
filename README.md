@@ -2,6 +2,14 @@
 
 ![Webhook Lab — capture, inspect and replay events](assets/readme-cover.png)
 
+## Try it online
+
+**[Open the interactive demo →](https://diegogutierrez.pages.dev/webhook-lab/)** — no installation or account required.
+
+Explore fictional events and simulate 503 → 200 recovery, timeouts, payload inspection and replay history. This browser-only demo is hosted on Cloudflare Pages; it does not receive external webhooks or connect to the author's computer. Reloading restores the sample inbox. [Demo scope and deployment](docs/public-demo.md).
+
+The Python/FastAPI backend below is the full local application. Addresses starting with `127.0.0.1` refer to your own computer when you install it, not to the public demo.
+
 [![Checks](https://github.com/DimaGutierrez/webhook-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/DimaGutierrez/webhook-lab/actions/workflows/ci.yml)
 
 **Follow the event. Understand the failure.**
@@ -22,7 +30,7 @@ A local webhook workbench built with Python and FastAPI. Capture an event, inspe
 
 The two demo destinations are explicitly simulated, in-process HTTP handlers. Configure a named destination to test an actual HTTP connection.
 
-## Quick start · Python 3.12+
+## Run the full backend locally · Python 3.12+
 
 Run these commands from this repository's root:
 
