@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Webhook Lab — Interactive demo | Diego Gutierrez</title>
+  <meta name="description" content="Explore webhook payloads and simulated replay failures in Webhook Lab. A Python and FastAPI project by Diego Gutierrez.">
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://diegogutierrez.pages.dev/webhook-lab/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23b3f36a'/%3E%3Cpath d='M8 10v12h16V10M8 16h16' fill='none' stroke='%23121912' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css"><script type="module" src="./app.js"></script>
+</head>
+<body>
+  <div id="workspace">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-icon">↳</span> webhook<span class="muted">lab</span></div>
+      <p class="sidebar-label">WORKSPACE</p><div class="nav-active"><span>▤</span> Event inbox <span id="nav-count" class="pill">0</span></div>
+      <a class="nav-link" href="https://github.com/DimaGutierrez/webhook-lab" target="_blank" rel="noopener"><span>⌘</span> Source on GitHub <span>↗</span></a>
+      <div class="sidebar-note"><span class="online-dot"></span> Interactive demo<p>Fictional events. Browser memory.<br>Reload to start fresh.</p></div>
+      <a class="quiet" href="/">← Portfolio</a>
+    </aside>
+    <main>
+      <header class="topbar"><span>Workspace <span class="slash">/</span> <strong>Event inbox</strong></span><span class="local-tag"><span class="online-dot"></span> SIMULATED DEMO</span></header>
+      <section class="content">
+        <div class="demo-banner"><strong>Try the 503 → 200 challenge.</strong> Add a sample event, replay a failure, then a success. All deliveries and timings are simulated in your browser. No external webhooks are received. <a href="https://github.com/DimaGutierrez/webhook-lab">Get the full Python backend ↗</a></div>
+        <div class="page-heading"><div><p class="eyebrow">CAPTURE. INSPECT. REPLAY.</p><h1>Every event tells a story.</h1><p class="muted">See what arrived. Find what failed. Try it again.</p></div><button id="sample" class="primary">＋ Add sample event</button></div>
+<div class="endpoint-card"><div><span class="method">DEMO</span><span>Explore safely with fictional events.</span></div><button id="reset" class="small-btn">↻ Reset demo</button></div><p class="endpoint-hint">Changes live only in this tab. Reloading restores the sample inbox. No account or installation needed.</p>
+        <div class="metrics"><div><span>Captured events</span><strong id="stat-events">0</strong><small>In this browser tab</small></div><div><span>Replay attempts</span><strong id="stat-attempts">0</strong><small>Every attempt leaves a trace</small></div><div><span>Delivered</span><strong id="stat-delivered" class="lime">0</strong><small>Simulated 2xx result</small></div><div><span>Failed</span><strong id="stat-failed">0</strong><small>Simulated error or timeout</small></div></div>
+        <div class="workbench">
+          <section class="inbox-pane" aria-label="Captured events">
+            <div class="pane-heading"><h2>Incoming events <span id="list-count" class="muted">0</span></h2><button id="refresh" class="small-btn">↻ Refresh</button></div>
+            <label for="search" class="sr-only">Filter loaded events</label><input id="search" class="search" placeholder="Search loaded events by ID or type…">
+            <div class="list-label"><span>EVENT / RECEIVED</span><span>LAST REPLAY</span></div>
+            <div id="event-list"></div>
+            <div class="pagination"><button id="prev" class="small-btn">← Previous</button><span id="page-info"></span><button id="next" class="small-btn">Next →</button></div>
+          </section>
+          <section class="detail-pane" aria-label="Event inspector">
+            <div id="empty-detail" class="empty"><span class="empty-icon">⌁</span><h2>A closer look starts here.</h2><p>Add a sample or select an event<br>to inspect its payload and replay history.</p></div>
+            <div id="event-detail" hidden>
+              <div class="pane-heading"><h2>Event inspector</h2><span class="badge captured">CAPTURED</span></div>
+              <div class="event-meta"><code id="detail-id"></code><p id="detail-meta" class="muted"></p></div>
+              <div class="tabs" role="tablist" aria-label="Event details"><button id="tab-payload" role="tab" aria-controls="panel-payload" aria-selected="true" data-tab="payload" class="active">Payload</button><button id="tab-headers" role="tab" aria-controls="panel-headers" aria-selected="false" data-tab="headers">Headers</button><button id="tab-attempts" role="tab" aria-controls="panel-attempts" aria-selected="false" data-tab="attempts">Replay history <span id="attempt-count">0</span></button></div>
+              <div id="panel-payload" role="tabpanel" aria-labelledby="tab-payload"><div class="code-toolbar"><span id="content-type"></span><button id="download" class="quiet">↓ Raw body</button></div><pre id="payload"></pre></div>
+              <div id="panel-headers" role="tabpanel" aria-labelledby="tab-headers" hidden><p class="hint inset">These are fictional diagnostic headers. The full backend sanitizes headers before storage.</p><pre id="headers"></pre></div>
+              <div id="panel-attempts" role="tabpanel" aria-labelledby="tab-attempts" hidden><div id="attempts"></div></div>
+              <div class="replay-box"><div><h3>Replay this event</h3><p>Same sample. A simulated attempt. A visible trace.</p></div><label class="sr-only" for="target">Replay destination</label><div class="replay-controls"><select id="target"></select><button id="replay" class="primary">↻ Replay</button></div><p class="hint">No HTTP request is sent. Status codes and durations are illustrative; a 200 does not prove exactly-once processing.</p></div>
+            </div>
+          </section>
+        </div>
+        <footer><span>WEBHOOK LAB <span class="muted">/</span> v0.1.0</span><span>Built to make the invisible observable.</span></footer>
+      </section>
+    </main>
+  </div>
+  <div id="toast" role="status" hidden></div>
+</body>
+</html>
