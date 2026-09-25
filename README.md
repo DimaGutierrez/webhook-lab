@@ -44,7 +44,7 @@ python -m pip install -r requirements.lock
 python -m webhook_lab
 ```
 
-Open **http://127.0.0.1:8000**. Paste the token stored in `data/admin.token` into the workbench. The token stays in browser memory and is cleared when you lock or reload the page.
+Open **https://diegogutierrez.pages.dev/webhook-lab/**. Paste the token stored in `data/admin.token` into the workbench. The token stays in browser memory and is cleared when you lock or reload the page.
 
 If PowerShell blocks activation, use `.\.venv\Scripts\python.exe` directly instead of changing your execution policy.
 
