@@ -161,4 +161,4 @@ English and Spanish comments are welcome. If this tool helps you, a star makes i
 
 Try the failure-to-recovery flow with a synthetic event and report where the experience becomes confusing. Small reproducible bugs are especially useful. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Created by [Diego Gutierrez](https://github.com/DimaGutierrez). MIT license.
+Created by [Diego Ramiro Gutierrez](https://github.com/DimaGutierrez). MIT license.
